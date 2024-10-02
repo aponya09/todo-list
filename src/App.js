@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Form from './componets/Form';
+import Main from './componets/Main';
 
 function App() {
+  const [test, setTest] = useState([{name: 'AIGERIM'}])
+ const getProducts=(somm)=>{
+ setTest([...test, somm])
+ }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <Form onGetSomm={getProducts}/>
+  {
+    test.map((el)=>{
+      return  <Main name={el.name}/> 
+    })
+  }
     </div>
   );
 }
